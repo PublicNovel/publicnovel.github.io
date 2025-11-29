@@ -1,347 +1,409 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>枯藤老树 作品合集</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- favicon -->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>枯藤老树 - 作者作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* 顶部提示栏样式 */
+        .top-alert {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .alert-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .alert-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .warning {
+            color: #ffdd59;
+            font-weight: bold;
+        }
 
-        <!-- Google fonts -->
-        <link href="static/css/css-Oxygen400700300.css" rel="stylesheet" type="text/css">
-        <link href="static/css/css-Arimo400400italic700italic700.css" rel="stylesheet" type="text/css">
+        .warningRed {
+            color: #f8fd03;
+            font-weight: bold;
+        }
+        
+        .order-btn {
+            background-color: #ff3860;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        
+        .order-btn:hover {
+            background-color: #ff2b56;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 主内容区样式 */
+        .main-content {
+            display: flex;
+            flex: 1;
+            max-width: 1200px;
+            margin: 20px auto;
+            width: 100%;
+            padding: 0 15px;
+        }
+        
+        /* 左侧系列列表样式 */
+        .series-sidebar {
+            width: 250px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-right: 20px;
+        }
+        
+        .series-sidebar h2 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #6a11cb;
+            color: #333;
+        }
+        
+        .series-list {
+            list-style: none;
+        }
+        
+        .series-item {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .series-item i {
+            margin-right: 10px;
+            color: #6a11cb;
+        }
+        
+        .series-item:hover {
+            background-color: #f0f5ff;
+        }
+        
+        .series-item.active {
+            background-color: #6a11cb;
+            color: white;
+        }
+        
+        .series-item.active i {
+            color: white;
+        }
+        
+        /* 右侧章节内容样式 */
+        .chapters-content {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .series-title {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #6a11cb;
+        }
+        
+        .chapters-list {
+            list-style: none;
+        }
+        
+        .chapter-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .chapter-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .chapter-link {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: 500;
+            flex: 1;
+        }
+        
+        .chapter-link:hover {
+            color: #6a11cb;
+            text-decoration: underline;
+        }
+        
+        .download-btn {
+            background-color: #00d1b2;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #00c4a7;
+            transform: translateY(-2px);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 30px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .series-sidebar {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .alert-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .alert-text {
+                margin-bottom: 10px;
+            }
+            
+            .series-list {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .series-item {
+                white-space: nowrap;
+                margin-right: 10px;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部提示栏 -->
+        <div class="top-alert">
+            <div class="alert-content">
+                <div class="alert-text">
+                    <p>
+                        点击需要购买的项目，填好正确邮箱下单，将邮箱收到的<span class="warningRed">【密码】</span>输入到<span class="warningRed">【下载】</span>即可！</br>
+                        未收到邮箱右侧<span class="warningRed">【查询购买订单】</span>按钮</br>
+                               <span class="warningRed">【收藏】</span>本页防失联不迷路！【原创不易，喜欢请支持】
 
-        <!-- style css -->
-		 <link rel="stylesheet" href="static/css/bootstrap.min.css">
-		 <link rel="stylesheet" href="static/css/animate.css">
-		 <link rel="stylesheet" href="static/css/jquery-ui.min.css">
-		 <link rel="stylesheet" href="static/css/meanmenu.min.css">
-		 <link rel="stylesheet" href="static/css/owl.carousel.min.css">
-		 <link rel="stylesheet" href="static/css/font-awesome.min.css">
-		 <link rel="stylesheet" href="static/css/nivo-slider.css">
-		 <link rel="stylesheet" href="static/css/preview.css">
-		 <link rel="stylesheet" href="static/css/style.css">
-		 <link rel="stylesheet" href="static/css/responsive.css">
-
-
-        <!-- modernizr js -->
-        <script src="static/js/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body background="./static/image/kutenglaoshu.jpg" style="background-repeat:no-repeat;background-size:20%;background-position: right 225px">
-        <header class="header-area">
-            <div class="header-top">
-                <div class="container">
-                    <div class="row">
-                        <div>
-                            <div class="logo">
-                                <p style="font-size:50px;color:black"><b>枯藤老树</b></p>
-								<li style="font-size:20px;color:black">点击需要解锁的项目，填好<b style="color:red">正确邮箱</b>下单，将邮箱收到的<b style="color:red">【密码】</b>输入到<b style="color:red">【下载】</b>即可！</li>
-								<li style="font-size:20px;color:black">未收到邮箱点此<a style="font-size:20px;" target="_blank"  href="https://shop.aiqfd.com/member/query.php"><strong style="font-size:20px;color:blue">【查询订单】</strong></a></li>
-								<li style="font-size:20px;color:green">【收藏】本页防失联不迷路！</li>
-								<li style="font-size:20px;color:magenta">【原创不易，喜欢请支持】</li>
-								<br>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-8 col-4">
-                        </div>
-                    </div>
+                    </p>
                 </div>
+                <a href="https://www.fansky.net/kutenglaoshu" class="order-btn">查询购买订单</a>
             </div>
-        </header>
-        <!-- header-area end -->
-        <div class="banner-area section-padding">
-  
-
         </div>
-        <!-- banner-area end -->
         
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>推荐章节</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr>
-								<td style="width:400px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7433">熟母女教师的耻辱征服（完篇）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/irPKm37cva0j">→这里下载←</a>　　
-							</td>	
-							<td style="width:450px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7108">空姐母女花的出卖交易（完篇）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/i7vFH35hb7kj">→这里下载←</a>　
-							</td>
-						       <td style="width:450px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=5483">被迫受孕的护士长美母（完篇）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ihCAc2u1pkti">→这里下载←</a>　　
-							</td>	
-					
-						</tr>
-						<tr>
-							<td style="width:450px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=1423">沦陷在同学胯下的美m<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ijDoL2rv07mf">→这里下载←</a>　　
-							</td>
-							<td style="width:450px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=479">成人礼完本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iImfp2ruxn6h">→这里下载←</a>　
-							</td>
-							<td style="width:450px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=495">老驴头全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/i8K622ruyuti">→这里下载←</a>　
-							</td>						
-						</tr>
-					</table>
-                </div>
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 左侧系列列表 -->
+            <div class="series-sidebar">
+                <h2>作品系列</h2>
+                <ul class="series-list">
+                    <li class="series-item active" data-series="series1">
+                        <i class="fas fa-book"></i>推荐章节
+                    </li>
+                    <li class="series-item" data-series="series2">
+                        <i class="fas fa-book"></i>绿帽成人礼
+                    </li>
+                    <li class="series-item" data-series="series3">
+                        <i class="fas fa-book"></i>老驴头
+                    </li>
+                    <li class="series-item" data-series="series4">
+                        <i class="fas fa-book"></i>完结合集
+                    </li>
+                </ul>
             </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>成人礼</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=479">成人礼完本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iImfp2ruxn6h">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=480">成人礼番外一<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/i1gFv2ruxn7i">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=482">成人礼番外二<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iIays2ruxn8j">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=483">成人礼独立番外上<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/icHnr2ruxona">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=484">成人礼独立番外下<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iRhRv2ruxp5i">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=489">成人礼番外三<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/icXIf2ruxnkb">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=491">成人礼番外四<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ilzcF2ruxoli">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=492">成人礼番外五<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/icHnr2ruxona">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=667">成人礼番外六<strong style="font-size:15px">[发电]</strong></a>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iWDKN2ruxrje">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=875">成人礼魔都联动上<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iTy0k2ruxs6h">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=1158">成人礼魔都联动下<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iSLjX2ruxsja">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=5827">何妤的复仇<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ihXiN2x40m4b">→这里下载←</a>　
-							</td>
-						</tr>
-							 <tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7108">空姐母女花的出卖交易（完篇）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/i7vFH35hb7kj">→这里下载←</a>　
-							</td>
-						</tr>
-					</table>
-                </div>
+            
+            <!-- 右侧章节内容 -->
+            <div class="chapters-content">
+                <h2 class="series-title">推荐章节 - 章节列表</h2>
+                <ul class="chapters-list" id="chapters-container">
+                    <!-- 章节内容将通过JavaScript动态生成 -->
+                </ul>
             </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>老驴头</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=495">老驴头全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/i8K622ruyuti">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=496">老驴头续<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iH8M52ruyuuj">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=497">老驴头再续<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iH91Q2ruyuva">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=498">老驴头番外一<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iBb9j2ruyuyd">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=499">老驴头番外二<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ixIX22ruyuze">→这里下载←</a>　
-							</td>
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>完结合集</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=494">哥布林全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iKn1x2ruzyuj">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=503">穿越过去全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ihw3C2rv00ub">→这里下载←</a>　　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=504">武圣的炼狱全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iu3rK2rv00wd">→这里下载←</a>　
-							</td>
-							</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=505">中华小正太全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/i2HiS2rv00zg">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=506">天后巨星全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iW6tq2rv012j">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=507">姆苟MM全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iO3a72rv015c">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=508">至高女帝全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/itNpc2rv05qh">→这里下载←</a>　　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=509">至高三女帝全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iMpKM2rv05ri">→这里下载←</a>　　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=513">黑皮友和大白马全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ibMKD2rv06uh">→这里下载←</a>　
-							</td>
-						</tr>
-				         	<tr style="height:50px">
-							<td style="width:400px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=1423">沦陷在同学胯下的美m<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ijDoL2rv07mf">→这里下载←</a>　　
-							</td>	
-						<td style="width:400px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=5483">被迫受孕的护士长美母（完篇）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ihCAc2u1pkti">→这里下载←</a>　　
-							</td>	
-							<td style="width:400px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7433">熟母女教师的耻辱征服（完篇）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/irPKm37cva0j">→这里下载←</a>　　
-							</td>	
-						</tr>
-					</table>　
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>连载中</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=478">耻辱遭遇P1<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/i8BOq2rw3mkh">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=476">安艺伦也P1<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iRmrE2rw3p4j">→这里下载←</a>　　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=475">安艺伦也P2<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ifCPc2rw3oze">→这里下载←</a>　
-							</td>
-							</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=500">魔都P1<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ic3SH2rw3zvg">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=501">魔都P2<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ig6Ov2rw3zyj">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=502">魔都P3<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ihenl2rw402d">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=591">无敌战姬P1<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/id0HK2rw4flc">→这里下载←</a>　　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=511">牧羊犬P1<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/i8tKt2rw4fne">→这里下载←</a>　　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=512">牧羊犬P2<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/idXKd2rw4fpg">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=474">chatGPT一<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iZ4gb2rw4kub">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=510">狂怒人生P1<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iknqw2rw4nrg">→这里下载←</a>　
-							</td>
-						</tr>
-					</table>　
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
+        </div>
+        
+        <!-- 页脚 -->
+        <footer>
+            <p>© 2025 枯藤老树 - 所有权利保留</p>
+        </footer>
+    </div>
 
-        <!-- all js here -->
-        <!-- jquery latest version -->
-        <script src="static/js/jquery-1.12.4.min.js"></script>
-        <!-- bootstrap js -->
-        <script src="static/js/bootstrap.min.js"></script>
-        <!-- owl.carousel js -->
-        <script src="static/js/owl.carousel.min.js"></script>
-        <!-- meanmenu js -->
-        <script src="static/js/jquery.meanmenu.js"></script>
-        <!-- jquery-ui js -->
-        <script src="static/js/jquery-ui.min.js"></script>
-        <!-- countdown js -->
-        <script src="static/js/jquery.countdown.min.js"></script>
-        <!-- elevateZoom js -->
-        <script src="static/js/jquery.elevateZoom-3.0.8.min.js"></script>
-        <!-- wow js -->
-        <script src="static/js/wow.min.js"></script>
-        <!-- nivo.slider js -->
-        <script src="static/js/jquery.nivo.slider.js"></script>
-        <script src="static/js/home.js"></script>
-        <!-- plugins js -->
-        <script src="static/js/plugins.js"></script>
-        <!-- main js -->
-        <script src="static/js/main.js"></script>
-    </body>
+    <script>
+        // 模拟数据 - 实际使用时可以替换为真实数据
+        const seriesData = {
+            series1: {
+                title: "推荐章节",
+                chapters: [
+                    { name: "孕妇美人妻的卑贱凌辱抉择(完篇)", purchaseLink: "https://www.fansky.net/kutenglaoshu/30", downloadLink: "https://www.fansky.net/kutenglaoshu/30?tab=download" },
+                    { name: "熟m女教师的耻辱征服 （完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/29", downloadLink: "https://www.fansky.net/kutenglaoshu/29?tab=download" },
+                    { name: "被洗脑凌辱强迫受孕的美母护士长 （完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/28", downloadLink: "https://www.fansky.net/kutenglaoshu/28?tab=download" },
+                    { name: "沦陷在同桌胯下的美母（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/27", downloadLink: "https://www.fansky.net/kutenglaoshu/27?tab=download" },
+                    { name: "空姐母女花的出卖交易（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/12", downloadLink: "https://www.fansky.net/kutenglaoshu/12?tab=download" },
+                    { name: "老驴头（全本）", purchaseLink: "https://www.fansky.net/kutenglaoshu/13", downloadLink: "https://www.fansky.net/kutenglaoshu/13?tab=download" },
+                    { name: "绿帽成人礼（精修全本）", purchaseLink: "https://www.fansky.net/kutenglaoshu/1", downloadLink: "https://www.fansky.net/kutenglaoshu/1?tab=download" },
+                ]
+            },
+            series2: {
+                title: "绿帽成人礼",
+                chapters: [
+                    { name: "精修全本", purchaseLink: "https://www.fansky.net/kutenglaoshu/1", downloadLink: "https://www.fansky.net/kutenglaoshu/1?tab=download" },
+                    { name: "番外一", purchaseLink: "https://www.fansky.net/kutenglaoshu/2", downloadLink: "https://www.fansky.net/kutenglaoshu/2?tab=download" },
+                    { name: "番外二", purchaseLink: "https://www.fansky.net/kutenglaoshu/3", downloadLink: "https://www.fansky.net/kutenglaoshu/3?tab=download" },
+                    { name: "独立番外上", purchaseLink: "https://www.fansky.net/kutenglaoshu/4", downloadLink: "https://www.fansky.net/kutenglaoshu/4?tab=download" },
+                    { name: "独立番外下", purchaseLink: "https://www.fansky.net/kutenglaoshu/5", downloadLink: "https://www.fansky.net/kutenglaoshu/5?tab=download" },
+                    { name: "番外三孕之章", purchaseLink: "https://www.fansky.net/kutenglaoshu/6", downloadLink: "https://www.fansky.net/kutenglaoshu/6?tab=download" },
+                    { name: "番外四", purchaseLink: "https://www.fansky.net/kutenglaoshu/7", downloadLink: "https://www.fansky.net/kutenglaoshu/7?tab=download" },
+                    { name: "番外五", purchaseLink: "https://www.fansky.net/kutenglaoshu/8", downloadLink: "https://www.fansky.net/kutenglaoshu/8?tab=download" },
+                    { name: "番外六", purchaseLink: "https://www.fansky.net/kutenglaoshu/9", downloadLink: "https://www.fansky.net/kutenglaoshu/9?tab=download" },
+                    { name: "魔都联动上", purchaseLink: "https://www.fansky.net/kutenglaoshu/10", downloadLink: "https://www.fansky.net/kutenglaoshu/10?tab=download" },
+                    { name: "魔都联动下", purchaseLink: "https://www.fansky.net/kutenglaoshu/11", downloadLink: "https://www.fansky.net/kutenglaoshu/11?tab=download" },
+                    { name: "空姐母女花的出卖交易（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/12", downloadLink: "https://www.fansky.net/kutenglaoshu/12?tab=download" },
+                ]
+            },
+            series3: {
+                title: "老驴头",
+                chapters: [
+                    { name: "全本", purchaseLink: "https://www.fansky.net/kutenglaoshu/13", downloadLink: "https://www.fansky.net/kutenglaoshu/13?tab=download" },
+                    { name: "续篇", purchaseLink: "https://www.fansky.net/kutenglaoshu/14", downloadLink: "https://www.fansky.net/kutenglaoshu/14?tab=download" },
+                    { name: "再续", purchaseLink: "https://www.fansky.net/kutenglaoshu/15", downloadLink: "https://www.fansky.net/kutenglaoshu/15?tab=download" },
+                    { name: "番外一", purchaseLink: "https://www.fansky.net/kutenglaoshu/16", downloadLink: "https://www.fansky.net/kutenglaoshu/16?tab=download" },
+                    { name: "番外二", purchaseLink: "https://www.fansky.net/kutenglaoshu/17", downloadLink: "https://www.fansky.net/kutenglaoshu/17?tab=download" },
+                ]
+            },
+            series4: {
+                title: "完结合集",
+                chapters: [
+                    { name: "哥布林与绿帽首富的淫妻们（全篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/18", downloadLink: "https://www.fansky.net/kutenglaoshu/18?tab=download" },
+                    { name: "穿越过去做绿王（全篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/19", downloadLink: "https://www.fansky.net/kutenglaoshu/19?tab=download" },
+                    { name: "武圣美母的黑色淫狱（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/20", downloadLink: "https://www.fansky.net/kutenglaoshu/20?tab=download" },
+                    { name: "中华小正太和他的贱奴大洋马们（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/21", downloadLink: "https://www.fansky.net/kutenglaoshu/21?tab=download" },
+                    { name: "丰白绝色的35岁哺乳人妻天后巨星沦为大D黑人毒贩的受精母狗（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/22", downloadLink: "https://www.fansky.net/kutenglaoshu/22?tab=download" },
+                    { name: "母狗妈妈（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/23", downloadLink: "https://www.fansky.net/kutenglaoshu/23?tab=download" },
+                    { name: "至高女帝（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/24", downloadLink: "https://www.fansky.net/kutenglaoshu/24?tab=download" },
+                    { name: "三女帝的淫堕（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/25", downloadLink: "https://www.fansky.net/kutenglaoshu/25?tab=download" },
+                    { name: "黑皮前女友与大白马老婆的淫欲人生（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/26", downloadLink: "https://www.fansky.net/kutenglaoshu/26?tab=download" },
+                    { name: "沦陷在同桌胯下的美母（完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/27", downloadLink: "https://www.fansky.net/kutenglaoshu/27?tab=download" },
+                    { name: "被洗脑凌辱强迫受孕的美母护士长 （完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/28", downloadLink: "https://www.fansky.net/kutenglaoshu/28?tab=download" },
+                    { name: "熟m女教师的耻辱征服 （完篇）", purchaseLink: "https://www.fansky.net/kutenglaoshu/29", downloadLink: "https://www.fansky.net/kutenglaoshu/29?tab=download" },
+                    { name: "孕妇美人妻的卑贱凌辱抉择(完篇)", purchaseLink: "https://www.fansky.net/kutenglaoshu/30", downloadLink: "https://www.fansky.net/kutenglaoshu/30?tab=download" },
+                ]
+            },
+        };
+        
+        
+        
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 默认显示第一个系列
+            showSeries('series1');
+            
+            // 添加系列点击事件
+            const seriesItems = document.querySelectorAll('.series-item');
+            seriesItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 移除所有active类
+                    seriesItems.forEach(i => i.classList.remove('active'));
+                    // 为当前项添加active类
+                    this.classList.add('active');
+                    // 显示对应系列
+                    const seriesId = this.getAttribute('data-series');
+                    showSeries(seriesId);
+                });
+            });
+        });
+
+        // 显示指定系列的章节
+        function showSeries(seriesId) {
+            const series = seriesData[seriesId];
+            if (!series) return;
+            
+            // 更新标题
+            document.querySelector('.series-title').textContent = `${series.title} - 章节列表`;
+            
+            // 生成章节HTML
+            const chaptersContainer = document.getElementById('chapters-container');
+            chaptersContainer.innerHTML = '';
+            
+            series.chapters.forEach(chapter => {
+                const li = document.createElement('li');
+                li.className = 'chapter-item';
+                li.innerHTML = `
+                    <a href="${chapter.purchaseLink}" class="chapter-link">${chapter.name}</a>
+                    <a href="${chapter.purchaseLink}" class="download-btn">购买</a>　
+                    <a href="${chapter.downloadLink}" class="download-btn">下载</a>
+                `;
+                chaptersContainer.appendChild(li);
+            });
+        }
+    </script>
+</body>
 </html>
+
+
+
+
