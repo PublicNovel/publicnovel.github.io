@@ -1,552 +1,499 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>绿到尽头 的餐饮公司</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- favicon -->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绿到尽头 - 绿色餐饮集团</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* 顶部提示栏样式 */
+        .top-alert {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .alert-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .alert-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .warning {
+            color: #ffdd59;
+            font-weight: bold;
+        }
 
-        <!-- Google fonts -->
-        <link href="static/css/css-Oxygen400700300.css" rel="stylesheet" type="text/css">
-        <link href="static/css/css-Arimo400400italic700italic700.css" rel="stylesheet" type="text/css">
+        .warningRed {
+            color: #f8fd03;
+            font-weight: bold;
+        }
+        
+        .order-btn {
+            background-color: #ff3860;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        
+        .order-btn:hover {
+            background-color: #ff2b56;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 主内容区样式 */
+        .main-content {
+            display: flex;
+            flex: 1;
+            max-width: 1200px;
+            margin: 20px auto;
+            width: 100%;
+            padding: 0 15px;
+        }
+        
+        /* 左侧系列列表样式 */
+        .series-sidebar {
+            width: 250px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-right: 20px;
+        }
+        
+        .series-sidebar h2 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #6a11cb;
+            color: #333;
+        }
+        
+        .series-list {
+            list-style: none;
+        }
+        
+        .series-item {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .series-item i {
+            margin-right: 10px;
+            color: #6a11cb;
+        }
+        
+        .series-item:hover {
+            background-color: #f0f5ff;
+        }
+        
+        .series-item.active {
+            background-color: #6a11cb;
+            color: white;
+        }
+        
+        .series-item.active i {
+            color: white;
+        }
+        
+        /* 右侧章节内容样式 */
+        .chapters-content {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .series-title {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #6a11cb;
+        }
+        
+        .chapters-list {
+            list-style: none;
+        }
+        
+        .chapter-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .chapter-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .chapter-link {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: 500;
+            flex: 1;
+        }
+        
+        .chapter-link:hover {
+            color: #6a11cb;
+            text-decoration: underline;
+        }
+        
+        .download-btn {
+            background-color: #00d1b2;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #00c4a7;
+            transform: translateY(-2px);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 30px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .series-sidebar {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .alert-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .alert-text {
+                margin-bottom: 10px;
+            }
+            
+            .series-list {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .series-item {
+                white-space: nowrap;
+                margin-right: 10px;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部提示栏 -->
+        <div class="top-alert">
+            <div class="alert-content">
+                <div class="alert-text">
+                    <p>
+                        点击需要购买的项目，填好正确邮箱下单，将邮箱收到的<span class="warningRed">【密码】</span>输入到<span class="warningRed">【下载】</span>即可！</br>
+                        未收到邮箱右侧<span class="warningRed">【查询购买订单】</span>按钮</br>
+                               <span class="warningRed">【收藏】</span>本页防失联不迷路！【原创不易，喜欢请支持】
 
-        <!-- style css -->
-		 <link rel="stylesheet" href="static/css/bootstrap.min.css">
-		 <link rel="stylesheet" href="static/css/animate.css">
-		 <link rel="stylesheet" href="static/css/jquery-ui.min.css">
-		 <link rel="stylesheet" href="static/css/meanmenu.min.css">
-		 <link rel="stylesheet" href="static/css/owl.carousel.min.css">
-		 <link rel="stylesheet" href="static/css/font-awesome.min.css">
-		 <link rel="stylesheet" href="static/css/nivo-slider.css">
-		 <link rel="stylesheet" href="static/css/preview.css">
-		 <link rel="stylesheet" href="static/css/style.css">
-		 <link rel="stylesheet" href="static/css/responsive.css">
-
-
-        <!-- modernizr js -->
-        <script src="static/js/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body background="//////" style="background-repeat:no-repeat;background-size:100%">
-        <header class="header-area">
-            <div class="header-top">
-                <div class="container">
-                    <div class="row">
-                        <div>
-                            <div class="logo">
-                                <p style="font-size:50px;color:black"><b>绿到尽头</b></p>
-								<li style="font-size:20px;color:black">点击需要解锁的项目，填好<b style="color:red">正确邮箱</b>下单，将邮箱收到的<b style="color:red">【密码】</b>输入到<b style="color:red">【下载】</b>即可！</li>
-								<li style="font-size:20px;color:black">未收到邮箱点此　<a style="font-size:20px;" target="_blank"  href="https://shop.aiqfd.com/member/query.php"><strong style="font-size:20px;color:blue">【查询订单】</strong></a></li>
-								<li style="font-size:20px;color:green">【收藏】本页防失联不迷路！</li>
-								<li style="font-size:20px;color:magenta">【原创不易，喜欢请支持】</li>
-								<br>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-8 col-4">
-                        </div>
-                    </div>
+                    </p>
                 </div>
+                <a href="https://www.fansky.net/lvdaojintou" class="order-btn">查询购买订单</a>
             </div>
-        </header>
-        <!-- header-area end -->
-        <div class="banner-area section-padding">
-  
-
         </div>
-        <!-- banner-area end -->
         
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>推荐菜单</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr style="height:50px">
-								<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7930">寿司P10<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/i4qHt39rynxa">→这里下载←</a>　
-							</td>	
-								<td style="width:350px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7740">纯爱系统3真硬篇<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/imbWe38rbfch">→这里下载←</a>　
-							</td>	
-							 <td style="width:350px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7124">元宵P9<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/ilwFW35k6vne">→这里下载←</a>　
-							</td>
-							<td style="width:350px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=6527">纯爱系统1大器篇<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iWOnl31unjjg">→这里下载←</a>　
-							</td>	
-							  <td style="width:350px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=4508">辣子鸡全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iJ6HT2n9m6ra">→这里下载←</a>　
-							</td>																																						
-						</tr>
-						<tr style="height:50px">
-							<td style="width:350px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=2003">寿喜烧全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/igtZ825pd24h">→这里下载←</a>　
-							</td>	
-							</td>	
-							<td style="width:350px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=241">发糕全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/inrVv0co75ba">→这里下载←</a>　
-							</td>
-							<td style="width:350px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=2478">墨鱼烧P4<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/iBQ2j2a3yufa">→这里下载←</a>　
-							</td>
-						</tr>
-					</table>
-                </div>
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 左侧系列列表 -->
+            <div class="series-sidebar">
+                <h2>作品系列</h2>
+                <ul class="series-list">
+                    <li class="series-item active" data-series="series1">
+                        <i class="fas fa-book"></i>推荐菜单
+                    </li>
+                    <li class="series-item" data-series="series2">
+                        <i class="fas fa-book"></i>完结合集
+                    </li>
+                    <li class="series-item" data-series="series3">
+                        <i class="fas fa-book"></i>御宴
+                    </li>
+                    <li class="series-item" data-series="series4">
+                        <i class="fas fa-book"></i>寿司
+                    </li>
+                    <li class="series-item" data-series="series5">
+                        <i class="fas fa-book"></i>快餐
+                    </li>
+                    <li class="series-item" data-series="series6">
+                        <i class="fas fa-book"></i>墨鱼烧
+                    </li>
+                    <li class="series-item" data-series="series7">
+                        <i class="fas fa-book"></i>皇飨
+                    </li>
+                    <li class="series-item" data-series="series8">
+                        <i class="fas fa-book"></i>乌头炒白术
+                    </li>
+                    <li class="series-item" data-series="series9">
+                        <i class="fas fa-book"></i>纯爱系统
+                    </li>
+                    <li class="series-item" data-series="series10">
+                        <i class="fas fa-book"></i>黑米粥
+                    </li>
+                    <li class="series-item" data-series="series11">
+                        <i class="fas fa-book"></i>元宵
+                    </li>
+                    <li class="series-item" data-series="series12">
+                        <i class="fas fa-book"></i>碳烤火腿
+                    </li>
+                    <li class="series-item" data-series="series13">
+                        <i class="fas fa-book"></i>绿帽深渊
+                    </li>                </ul>
             </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>御宴</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr style="height:50px">
-							<td style="width:400px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=246">P6-10（免下载链接）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="ssssssssssssss">→这里下载←</a>　
-							</td>
-							<td style="width:400px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=1480">P11-16（免下载链接）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="ssssssssssssss">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=247">P11<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/iQgpe1a55bgj">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=248">P12<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/isCXq1dr6zng">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=249">P13<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/icl0u1i97g6d">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=953">P14<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/i4D8f1rmruxg">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=1184">P15<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/iqTMv1xsma8d">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=1479">P16（完结）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/i33kz21hnv4j">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=2332">番外一<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/imMSj28rbu6f">→这里下载←</a>　
-							</td>
-						</tr>
-					</table>
-                </div>
+            
+            <!-- 右侧章节内容 -->
+            <div class="chapters-content">
+                <h2 class="series-title">星辰变 - 章节列表</h2>
+                <ul class="chapters-list" id="chapters-container">
+                    <!-- 章节内容将通过JavaScript动态生成 -->
+                </ul>
             </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>寿司</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=253">P1<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/i0ZsN1fcd2nc">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=412">P2<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/iRbEx1kdtbrc">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=885">P3<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/imspM1q6ekud">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=1138">P4<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/isR471wpwweh">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=1782">P5<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/iZiC82499qsj">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=2384">P6<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/iDsh929co30b">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=3212">P7<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzouu.com/i9ISv2dyy7ij">→这里下载←</a>　
-							</td>	
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=4067">P8<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/inmKx2jthb6f">→这里下载←</a>　
-							</td>	
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=6085">P9<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iSao12ysfwkh">→这里下载←</a>　
-							</td>	
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7930">P10<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/i4qHt39rynxa">→这里下载←</a>　
-							</td>	
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>快餐</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=233">全本精修<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/i4hWf00zcvpe">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=234">番外一女武神<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/i7FgB102jk6j">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=235">番外二欧阳漓珺<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/i3i8C12rlz6d">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=694">番外三古韵婷<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/iBimo1ntatzi">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=895">番外四会所<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/iSW9D1utew6d">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=237">黑暗版1<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/is8dy1d3yj5g">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=254">黑暗版2<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/ifkrk1jl34kj">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=236">再快餐1-9<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/iHudb12m5fbc">→这里下载←</a>　
-							</td>
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 --> 
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>墨鱼烧</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="ssssssssssssss">P1免费<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/ilP8P1t7n7kd">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=1016">P2<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/irMNB1t7mp0f">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=2214">P3<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/iyvuO27l9gmd">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=2478">P4<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/iBQ2j2a3yufa">→这里下载←</a>　
-							</td>	
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=3881">P5<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/ipYmq2i6vd2d">→这里下载←</a>　
-							</td>	
-							 <td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=5146">P6<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/ioxjG388643i">→这里下载←</a>　
-							</td>	
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>皇飨</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=251">第一集<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/i3IFu1bzo2yd">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=252">第二集<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/iPinI1gj2ush">→这里下载←</a>　
-							</td>
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>乌头炒白术</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=2606">第一集<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/ib20C2bbtipc">→这里下载←</a>　
-							</td>	
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=3462">第二集<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/itUbl2f5h5xi">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=4319">第三集（上卷完）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzout.com/iMSho2laf3ob">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=5474">第四集<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iY8AA2tyttyd">→这里下载←</a>　
-							</td>	
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-	 <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>纯爱系统</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=6527">1大器篇<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iWOnl31unjjg">→这里下载←</a>　
-							</td>	
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=6783">2又长篇<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzoup.com/iyEf9337c5ne">→这里下载←</a>　
-							</td>	
-							<td style="width:350px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7740">3真硬篇<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/imbWe38rbfch">→这里下载←</a>　
-							</td>	
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>完结合集</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=238">全家桶1-12全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/iyAaF00zcp5i">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=239">巨根夺娇QI<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/iXEeR00zc2ch">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=244">满汉全席第一部合集<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/iqNCI0gfpk9g">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=241">发糕全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/inrVv0co75ba">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=242">发糕番外一上<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/iiYTb16x90ch">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=243">发糕番外一下<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoux.com/igRDe17xzrcb">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=2003">寿喜烧全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/igtZ825pd24h">→这里下载←</a>　
-							</td>	
-							 <td style="width:350px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=4508">辣子鸡全本<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iJ6HT2n9m6ra">→这里下载←</a>　
-							</td>							
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-	       <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>黑米粥</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=240">黑米粥P1-4<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwf.lanzov.com/i3IFu1bzo2yd">→这里下载←</a>　
-							</td>	
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=2784">黑米粥P5<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://www.lanzoue.com/iHtn52curbng">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=3756">黑米粥P6<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwta.lanzoue.com/ic60P2hd9kgd">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=4919">黑米粥P7<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iuw2h2pwhnvg">→这里下载←</a>　
-							</td>	
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-        <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>元宵</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr>
-						       <td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=250">元宵P1-6<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ituQh2k0du5g">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=5826">元宵P7<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iWrQg2x3pjgj">→这里下载←</a>　
-							</td>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=6415">元宵P8<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ilcAF30wgbsb">→这里下载←</a>　
-							</td>
-						</tr>
-						<tr>
-						       <td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=7124">元宵P9<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzn.com/ilwFW35k6vne">→这里下载←</a>　
-							</td>
-						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
-       <!-- 系列开始 -->
-        <section class="new-arrival-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>绿帽深渊</h2>
-                        </div>
-                    </div>
-                </div>
-                <div>
-					<table>
-						<tr>
-							<td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=4387">P1<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iW2hJ2m68jwf">→这里下载←</a>　
-							</td>
-							 <td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=5325">P3<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/iVrvV2suqwcb">→这里下载←</a>　
-							</td>
-							 <td style="width:300px">
-								<a target="_blank" style="font-size:18px;color:blue" href="https://shop.aiqfd.com/?type=productinfo&id=5611">魔幻吐司（上）<strong style="font-size:15px">[发电]</strong>&#32;<a target="_blank" style="font-size:15px;color:red" href="https://wwph.lanzout.com/ieZdT2v1gevg">→这里下载←</a>　
-							</td>
- 						</tr>
-					</table>
-                </div>
-            </div>
-        </section>
-        <!-- 系列结束 -->
+        </div>
+        
+        <!-- 页脚 -->
+        <footer>
+            <p>© 2025 绿到尽头 - 所有权利保留</p>
+        </footer>
+    </div>
 
-        <!-- all js here -->
-        <!-- jquery latest version -->
-        <script src="static/js/jquery-1.12.4.min.js"></script>
-        <!-- bootstrap js -->
-        <script src="static/js/bootstrap.min.js"></script>
-        <!-- owl.carousel js -->
-        <script src="static/js/owl.carousel.min.js"></script>
-        <!-- meanmenu js -->
-        <script src="static/js/jquery.meanmenu.js"></script>
-        <!-- jquery-ui js -->
-        <script src="static/js/jquery-ui.min.js"></script>
-        <!-- countdown js -->
-        <script src="static/js/jquery.countdown.min.js"></script>
-        <!-- elevateZoom js -->
-        <script src="static/js/jquery.elevateZoom-3.0.8.min.js"></script>
-        <!-- wow js -->
-        <script src="static/js/wow.min.js"></script>
-        <!-- nivo.slider js -->
-        <script src="static/js/jquery.nivo.slider.js"></script>
-        <script src="static/js/home.js"></script>
-        <!-- plugins js -->
-        <script src="static/js/plugins.js"></script>
-        <!-- main js -->
-        <script src="static/js/main.js"></script>
-    </body>
+    <script>
+        // 模拟数据 - 实际使用时可以替换为真实数据
+        const seriesData = {
+            series1: {
+                title: "推荐菜单",
+                chapters: [
+                    { name: "碳烤火腿-第一集", purchaseLink: "https://www.fansky.net/lvdaojintou/51", downloadLink: "https://www.fansky.net/lvdaojintou/51?tab=download" },
+                    { name: "纯爱系统三真硬篇", purchaseLink: "https://www.fansky.net/lvdaojintou/11", downloadLink: "https://www.fansky.net/lvdaojintou/11?tab=download" },
+                    { name: "元宵P10", purchaseLink: "https://www.fansky.net/lvdaojintou/26", downloadLink: "https://www.fansky.net/lvdaojintou/26?tab=download" },
+                    { name: "寿喜烧（全篇）", purchaseLink: "https://www.fansky.net/lvdaojintou/46", downloadLink: "https://www.fansky.net/lvdaojintou/46?tab=download" },
+                    { name: "辣子鸡（全篇）", purchaseLink: "https://www.fansky.net/lvdaojintou/47", downloadLink: "https://www.fansky.net/lvdaojintou/47?tab=download" },
+                    { name: "发糕（全本）", purchaseLink: "https://www.fansky.net/lvdaojintou/43", downloadLink: "https://www.fansky.net/lvdaojintou/43?tab=download" },
+                    { name: "满汉全席第一部（合集）", purchaseLink: "https://www.fansky.net/lvdaojintou/42", downloadLink: "https://www.fansky.net/lvdaojintou/42?tab=download" },
+                ]
+            },
+            series2: {
+                title: "完结合集",
+                chapters: [
+                    { name: "全家桶2.0（1-12全本）", purchaseLink: "https://www.fansky.net/lvdaojintou/40", downloadLink: "https://www.fansky.net/lvdaojintou/40?tab=download" },
+                    { name: "巨根夺娇妻（全本）", purchaseLink: "https://www.fansky.net/lvdaojintou/41", downloadLink: "https://www.fansky.net/lvdaojintou/41?tab=download" },
+                    { name: "满汉全席第一部（合集）", purchaseLink: "https://www.fansky.net/lvdaojintou/42", downloadLink: "https://www.fansky.net/lvdaojintou/42?tab=download" },
+                    { name: "发糕（全本）", purchaseLink: "https://www.fansky.net/lvdaojintou/43", downloadLink: "https://www.fansky.net/lvdaojintou/43?tab=download" },
+                    { name: "发糕（番外一上）", purchaseLink: "https://www.fansky.net/lvdaojintou/44", downloadLink: "https://www.fansky.net/lvdaojintou/44?tab=download" },
+                    { name: "发糕（番外一下）", purchaseLink: "https://www.fansky.net/lvdaojintou/45", downloadLink: "https://www.fansky.net/lvdaojintou/45?tab=download" },
+                    { name: "寿喜烧（全篇）", purchaseLink: "https://www.fansky.net/lvdaojintou/46", downloadLink: "https://www.fansky.net/lvdaojintou/46?tab=download" },
+                    { name: "辣子鸡（全篇）", purchaseLink: "https://www.fansky.net/lvdaojintou/47", downloadLink: "https://www.fansky.net/lvdaojintou/47?tab=download" },
+                    { name: "魔幻吐司（上篇）", purchaseLink: "https://www.fansky.net/lvdaojintou/48", downloadLink: "https://www.fansky.net/lvdaojintou/48?tab=download" },
+                ]
+            },
+            series3: {
+                title: "御宴",
+                chapters: [
+                    { name: "P1-16合集", purchaseLink: "https://www.fansky.net/lvdaojintou/33", downloadLink: "https://www.fansky.net/lvdaojintou/33?tab=download" },
+                    { name: "番外一", purchaseLink: "https://www.fansky.net/lvdaojintou/34", downloadLink: "https://www.fansky.net/lvdaojintou/34?tab=download" },
+                ]
+            },
+            series4: {
+                title: "寿司",
+                chapters: [
+                    { name: "P1-6", purchaseLink: "https://www.fansky.net/lvdaojintou/35", downloadLink: "https://www.fansky.net/lvdaojintou/35?tab=download" },
+                    { name: "P7", purchaseLink: "https://www.fansky.net/lvdaojintou/36", downloadLink: "https://www.fansky.net/lvdaojintou/36?tab=download" },
+                    { name: "P8", purchaseLink: "https://www.fansky.net/lvdaojintou/37", downloadLink: "https://www.fansky.net/lvdaojintou/37?tab=download" },
+                    { name: "P9", purchaseLink: "https://www.fansky.net/lvdaojintou/38", downloadLink: "https://www.fansky.net/lvdaojintou/38?tab=download" },
+                    { name: "P10", purchaseLink: "https://www.fansky.net/lvdaojintou/39", downloadLink: "https://www.fansky.net/lvdaojintou/39?tab=download" },
+
+                ]
+            },
+            series5: {
+                title: "快餐",
+                chapters: [
+                    { name: "全本精修", purchaseLink: "https://www.fansky.net/lvdaojintou/24", downloadLink: "https://www.fansky.net/lvdaojintou/24?tab=download" },
+                    { name: "番外一女武神", purchaseLink: "https://www.fansky.net/lvdaojintou/25", downloadLink: "https://www.fansky.net/lvdaojintou/25?tab=download" },
+                    { name: "番外二欧阳漓珺", purchaseLink: "https://www.fansky.net/lvdaojintou/27", downloadLink: "https://www.fansky.net/lvdaojintou/27?tab=download" },
+                    { name: "番外三之白凤女皇*古韵婷", purchaseLink: "https://www.fansky.net/lvdaojintou/28", downloadLink: "https://www.fansky.net/lvdaojintou/28?tab=download" },
+                    { name: "番外四：迎曰会所", purchaseLink: "https://www.fansky.net/lvdaojintou/29", downloadLink: "https://www.fansky.net/lvdaojintou/29?tab=download" },
+                    { name: "黑暗快餐之水仙蒙尘P1", purchaseLink: "https://www.fansky.net/lvdaojintou/30", downloadLink: "https://www.fansky.net/lvdaojintou/30?tab=download" },
+                    { name: "黑暗快餐之水仙蒙尘P2", purchaseLink: "https://www.fansky.net/lvdaojintou/31", downloadLink: "https://www.fansky.net/lvdaojintou/31?tab=download" },
+                    { name: "再快餐1-9（合集）", purchaseLink: "https://www.fansky.net/lvdaojintou/32", downloadLink: "https://www.fansky.net/lvdaojintou/32?tab=download" },
+                ]
+            },
+            series6: {
+                title: "墨鱼烧",
+                chapters: [
+                    { name: "P2", purchaseLink: "https://www.fansky.net/lvdaojintou/18", downloadLink: "https://www.fansky.net/lvdaojintou/18?tab=download" },
+                    { name: "P3", purchaseLink: "https://www.fansky.net/lvdaojintou/20", downloadLink: "https://www.fansky.net/lvdaojintou/20?tab=download" },
+                    { name: "P4", purchaseLink: "https://www.fansky.net/lvdaojintou/21", downloadLink: "https://www.fansky.net/lvdaojintou/21?tab=download" },
+                    { name: "P5", purchaseLink: "https://www.fansky.net/lvdaojintou/22", downloadLink: "https://www.fansky.net/lvdaojintou/22?tab=download" },
+                    { name: "P6", purchaseLink: "https://www.fansky.net/lvdaojintou/23", downloadLink: "https://www.fansky.net/lvdaojintou/23?tab=download" },
+                ]
+            },
+            series7: {
+                title: "皇飨",
+                chapters: [
+                    { name: "第一集", purchaseLink: "https://www.fansky.net/lvdaojintou/16", downloadLink: "https://www.fansky.net/lvdaojintou/16?tab=download" },
+                    { name: "第二集", purchaseLink: "https://www.fansky.net/lvdaojintou/17", downloadLink: "https://www.fansky.net/lvdaojintou/17?tab=download" },
+                ]
+            },
+            series8: {
+                title: "乌头炒白术",
+                chapters: [
+                    { name: "第一集", purchaseLink: "https://www.fansky.net/lvdaojintou/12", downloadLink: "https://www.fansky.net/lvdaojintou/12?tab=download" },
+                    { name: "第二集", purchaseLink: "https://www.fansky.net/lvdaojintou/13", downloadLink: "https://www.fansky.net/lvdaojintou/13?tab=download" },
+                    { name: "第三集", purchaseLink: "https://www.fansky.net/lvdaojintou/14", downloadLink: "https://www.fansky.net/lvdaojintou/14?tab=download" },
+                    { name: "第四集", purchaseLink: "https://www.fansky.net/lvdaojintou/15", downloadLink: "https://www.fansky.net/lvdaojintou/15?tab=download" },
+
+                ]
+            },
+            series9: {
+                title: "纯爱系统",
+                chapters: [
+                    { name: "一大器篇", purchaseLink: "https://www.fansky.net/lvdaojintou/9", downloadLink: "https://www.fansky.net/lvdaojintou/9?tab=download" },
+                    { name: "二又长篇", purchaseLink: "https://www.fansky.net/lvdaojintou/10", downloadLink: "https://www.fansky.net/lvdaojintou/10?tab=download" },
+                    { name: "三真硬篇", purchaseLink: "https://www.fansky.net/lvdaojintou/11", downloadLink: "https://www.fansky.net/lvdaojintou/11?tab=download" },
+                ]
+            },
+            series10: {
+                title: "黑米粥",
+                chapters: [
+                    { name: "P1-4", purchaseLink: "https://www.fansky.net/lvdaojintou/5", downloadLink: "https://www.fansky.net/lvdaojintou/5?tab=download" },
+                    { name: "P5", purchaseLink: "https://www.fansky.net/lvdaojintou/6", downloadLink: "https://www.fansky.net/lvdaojintou/6?tab=download" },
+                    { name: "P6", purchaseLink: "https://www.fansky.net/lvdaojintou/7", downloadLink: "https://www.fansky.net/lvdaojintou/7?tab=download" },
+                    { name: "P7", purchaseLink: "https://www.fansky.net/lvdaojintou/8", downloadLink: "https://www.fansky.net/lvdaojintou/8?tab=download" },
+                ]
+            },
+            series11: {
+                title: "元宵",
+                chapters: [
+                    { name: "P1-6", purchaseLink: "https://www.fansky.net/lvdaojintou/1", downloadLink: "https://www.fansky.net/lvdaojintou/1?tab=download" },
+                    { name: "P7", purchaseLink: "https://www.fansky.net/lvdaojintou/2", downloadLink: "https://www.fansky.net/lvdaojintou/2?tab=download" },
+                    { name: "P8", purchaseLink: "https://www.fansky.net/lvdaojintou/3", downloadLink: "https://www.fansky.net/lvdaojintou/3?tab=download" },
+                    { name: "P9", purchaseLink: "https://www.fansky.net/lvdaojintou/4", downloadLink: "https://www.fansky.net/lvdaojintou/4?tab=download" },
+                    { name: "P10", purchaseLink: "https://www.fansky.net/lvdaojintou/26", downloadLink: "https://www.fansky.net/lvdaojintou/26?tab=download" },
+                ]
+            },
+            series12: {
+                title: "碳烤火腿",
+                chapters: [
+                    { name: "第一集", purchaseLink: "https://www.fansky.net/lvdaojintou/51", downloadLink: "https://www.fansky.net/lvdaojintou/51?tab=download" },
+                ]
+            },
+            series13: {
+                title: "绿帽深渊",
+                chapters: [
+                    { name: "P1", purchaseLink: "https://www.fansky.net/lvdaojintou/49", downloadLink: "https://www.fansky.net/lvdaojintou/49?tab=download" },
+                    { name: "P3", purchaseLink: "https://www.fansky.net/lvdaojintou/50", downloadLink: "https://www.fansky.net/lvdaojintou/50?tab=download" },
+                ]
+            }
+        };
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 默认显示第一个系列
+            showSeries('series1');
+            
+            // 添加系列点击事件
+            const seriesItems = document.querySelectorAll('.series-item');
+            seriesItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 移除所有active类
+                    seriesItems.forEach(i => i.classList.remove('active'));
+                    // 为当前项添加active类
+                    this.classList.add('active');
+                    // 显示对应系列
+                    const seriesId = this.getAttribute('data-series');
+                    showSeries(seriesId);
+                });
+            });
+        });
+
+        // 显示指定系列的章节
+        function showSeries(seriesId) {
+            const series = seriesData[seriesId];
+            if (!series) return;
+            
+            // 更新标题
+            document.querySelector('.series-title').textContent = `${series.title} - 章节列表`;
+            
+            // 生成章节HTML
+            const chaptersContainer = document.getElementById('chapters-container');
+            chaptersContainer.innerHTML = '';
+            
+            series.chapters.forEach(chapter => {
+                const li = document.createElement('li');
+                li.className = 'chapter-item';
+                li.innerHTML = `
+                    <a href="${chapter.purchaseLink}" class="chapter-link">${chapter.name}</a>
+                    <a href="${chapter.purchaseLink}" class="download-btn">购买</a>　
+                    <a href="${chapter.downloadLink}" class="download-btn">下载</a>
+                `;
+                chaptersContainer.appendChild(li);
+            });
+        }
+    </script>
+</body>
 </html>
+
+
+
+
